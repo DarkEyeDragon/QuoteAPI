@@ -1,0 +1,26 @@
+<svg id="Laag_1" data-name="Laag 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1366 768">
+    <defs>
+        <style>
+            .cls-1{fill:url(#Naamloos_verloop_35);}.cls-2{opacity:0.26;}.cls-3{fill:#9d00a5;}.cls-4,.cls-5{fill:#fff;}.cls-4{opacity:0.08;}.cls-5{opacity:0.12;}
+        </style>
+        <linearGradient id="Naamloos_verloop_35" x1="345.97" y1="967.75" x2="1020.03" y2="-199.75"
+                        gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#00dce0"/>
+            <stop offset="0.24" stop-color="#439ae2"/>
+            <stop offset="0.51" stop-color="#8558e4"/>
+            <stop offset="0.73" stop-color="#b629e6"/>
+            <stop offset="0.9" stop-color="#d40be7"/>
+            <stop offset="1" stop-color="#df00e7"/>
+        </linearGradient>
+    </defs>
+    <title>background</title>
+    <rect class="cls-1" width="1366" height="768"/>
+    <g class="cls-2">
+        <rect class="cls-3" x="1245.09" y="86.12" width="368.71" height="368.71" rx="7.48" ry="7.48"
+              transform="translate(82.45 820.09) rotate(-32.91)"/>
+    </g>
+    <rect class="cls-4" x="-188" y="63" width="318" height="318" rx="6.25" ry="6.25"
+          transform="translate(-152.23 35.08) rotate(-40.84)"/>
+    <rect class="cls-5" x="351" y="631" width="318" height="318" rx="6.25" ry="6.25"
+          transform="translate(-263.13 254.77) rotate(-22.46)"/>
+</svg>
