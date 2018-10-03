@@ -7,7 +7,10 @@
  */
 session_start();
 if (isset($_GET["data"], $_GET["id"]) && isset($_SESSION["username"])) {
-    include_once "protected/connect.php";
+    include_once "includes/connect.php";
+    $ch = new ConnectionHandler();
+    $ch->connectToUsers();
+    $conn = $ch->getConnection();
     if ($_GET["data"] == "accept") {
         if ($stmt = $conn->prepare("UPDATE discord SET accepted = 1 WHERE id=?")) {
             $stmt->bind_param("i", $_GET["id"]);

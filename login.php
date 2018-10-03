@@ -1,26 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Joshua
- * Date: 9/15/2018
- * Time: 10:38 PM
- */
+include "includes/DBController.php";
 session_start();
 if (!isset($_SESSION["username"])) {
     if (isset($_POST["username"], $_POST["password"])) {
         //$passHash = password_hash($_POST["password"], PASSWORD_BCRYPT);
-        include_once 'protected/connect.php';
-        if ($stmt = $conn->prepare('SELECT username,password,admin FROM users where username=?')) {
-            $stmt->bind_param("s", $_POST["username"]);
-            $stmt->execute();
-            $stmt->bind_result($username, $password, $admin);
-            $stmt->fetch();
-            if ($admin && password_verify($_POST["password"], $password)) {
-                $_SESSION["username"] = $_POST["username"];
-                header("Location: admin.php");
-            }
-        } else {
-            echo $conn->error;
+
+        $controller = new DBController();
+        if ($controller->validateUser($_POST["username"], $_POST["password"])) {
+            $_SESSION["username"] = $_POST["username"];
+            header("Location: admin.php");
         }
     }
     ?>

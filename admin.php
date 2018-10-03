@@ -1,11 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Joshua
- * Date: 9/14/2018
- * Time: 7:35 PM
- */
-include_once 'protected/connect.php';
+session_start();
+include "includes/DBController.php";
+if (!isset($_SESSION["username"])) {
+    header("Location: login.php");
+    die();
+}
+$controller = new DBController();
+
 ?>
 <html lang="en">
 <head>
@@ -21,13 +22,6 @@ include_once 'protected/connect.php';
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/editor.js"></script>
 </head>
-<?php
-session_start();
-if (!isset($_SESSION["username"])) {
-    header("Location: login.php");
-    die();
-}
-?>
 <body>
 <div id="mySidenav" class="sidenav">
     <h3>Quote API</h3>
@@ -42,35 +36,20 @@ if (!isset($_SESSION["username"])) {
     <div class="stats-panel">
         <h2>Accepted</h2>
         <?php
-        if ($query = $conn->query('SELECT id FROM discord WHERE accepted=1')) {
-            $row_count = $query->num_rows;
-            echo "<p>" . $row_count . "</p>";
-        } else {
-            echo "<p>No result</p>";
-        }
+        echo "<p>" . $controller->getPending() . "</p>";
         ?>
     </div>
 
     <div class="stats-panel">
         <h2>Pending</h2>
         <?php
-        if ($query = $conn->query('SELECT id FROM discord WHERE accepted=0')) {
-            $row_count = $query->num_rows;
-            echo "<p>" . $row_count . "</p>";
-        } else {
-            echo "<p>No result</p>";
-        }
+        echo "<p>" . $controller->getAccepted() . "</p>";
         ?>
     </div>
     <div class="stats-panel">
         <h2>Total</h2>
         <?php
-        if ($query = $conn->query('SELECT id FROM discord')) {
-            $row_count = $query->num_rows;
-            echo "<p>" . $row_count . "</p>";
-        } else {
-            echo "<p>No result</p>";
-        }
+        echo "<p>" . $controller->getTotal() . "</p>";
         ?>
     </div>
 </div>
@@ -85,13 +64,25 @@ if (!isset($_SESSION["username"])) {
                 <th>Date</th>
                 <th>Action</th>
             </tr>
-            <?php
-            $query = $conn->query('SELECT * FROM discord WHERE accepted=0');
-            while ($record = $query->fetch_row()) {
-                echo "<tr><td class='edit' " . $record[0] . "</td>" . "<td>" . $record[1] . "</td>" . "<td>" . $record[2] . "</td>" . "<td>" . $record[4] . "</td><td><a href='actions.php?data=accept&id=" . $record[0] . "'>Accept</a> <a href='actions.php?data=deny&id=" . $record[0] . "'>Deny</a></td></tr>";
-            }
-            $query->close();
-            ?>
+            <tr>
+                <?php
+                $result = $controller->getQuote(50, 0);
+                foreach ($result as $value) {
+                    echo "<tr>";
+                    $count = 0;
+                    $id = 0;
+                    foreach ($value as $finalValue) {
+                        if ($count == 0) {
+                            $id = $finalValue;
+                        }
+                        $count++;
+                        echo "<td>" . $finalValue . "</td>";
+                    }
+                    echo "<td><a href='actions.php?data=accept&id=" . $id . "'>Accept</a> <a href='actions.php?data=deny&id=" . $id . "'>Deny</a></td>";
+                    echo "</tr>";
+                }
+                ?>
+            </tr>
         </table>
     </div>
 </div>
@@ -107,11 +98,15 @@ if (!isset($_SESSION["username"])) {
                 <th>Action</th>
             </tr>
             <?php
-            $query = $conn->query('SELECT * FROM discord WHERE accepted=1');
-            while ($record = $query->fetch_row()) {
-                echo "<tr><td class='" . $record[0] . "'>" . $record[0] . "</td>" . "<td class='" . $record[0] . "'>" . $record[1] . "</td>" . "<td>" . $record[2] . "</td>" . "<td>" . $record[4] . "</td><td id='" . $record[0] . "'><a href='actions.php?data=deny&id=" . $record[0] . "'>Remove</a><a href='#' id='" . $record[0] . "'>Edit</a></td></tr>";
+            $result = $controller->getQuote(50, 1);
+            foreach ($result as $value) {
+                echo "<tr>";
+                foreach ($value as $finalValue) {
+                    echo "<td>" . $finalValue . "</td>";
+                }
+                echo "<td><a href='#'>Remove</a></td>";
+                echo "</tr>";
             }
-            $query->close();
             ?>
         </table>
     </div>

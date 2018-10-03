@@ -1,28 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Joshua
- * Date: 9/14/2018
- * Time: 4:42 PM
- */
 header('Access-Control-Allow-Origin: *');
-header("Content-type: application/json");
-include "protected/connect.php";
+//header("Content-type: application/json");
+include "includes/DBController.php";
+
+$DBController = new DBController();
+
+
 if (isset($_GET["quote"], $_GET["user_id"])) {
-    if ($stmt = $conn->prepare('INSERT INTO discord (quote, user_id) VALUES (?,?)')) {
-        $message = mysqli_real_escape_string($conn, $_GET["quote"]);
-        $stmt->bind_param("ss", $message, $_GET["user_id"]);
-        $stmt->execute();
-        constructResponse(true);
-    } else {
-        $success = false;
-        constructResponse(false);
-    }
-    $stmt->close();
+    var_dump($DBController);
+    $DBController->insertQuote($_GET["quote"], $_GET["user_id"]);
 } else {
     constructResponse(false);
 }
-$conn->close();
 function constructResponse($success)
 {
     if (isset($_GET["responseType"])) {
