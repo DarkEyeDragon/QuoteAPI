@@ -18,6 +18,8 @@ include_once 'protected/connect.php';
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/editor.js"></script>
 </head>
 <?php
 session_start();
@@ -86,7 +88,7 @@ if (!isset($_SESSION["username"])) {
             <?php
             $query = $conn->query('SELECT * FROM discord WHERE accepted=0');
             while ($record = $query->fetch_row()) {
-                echo "<tr><td>" . $record[0] . "</td>" . "<td>" . $record[1] . "</td>" . "<td>" . $record[2] . "</td>" . "<td>" . $record[4] . "</td><td><a href='actions.php?data=accept&id=" . $record[0] . "'>Accept</a> <a href='actions.php?data=deny&id=" . $record[0] . "'>Deny</a></td></tr>";
+                echo "<tr><td class='edit' " . $record[0] . "</td>" . "<td>" . $record[1] . "</td>" . "<td>" . $record[2] . "</td>" . "<td>" . $record[4] . "</td><td><a href='actions.php?data=accept&id=" . $record[0] . "'>Accept</a> <a href='actions.php?data=deny&id=" . $record[0] . "'>Deny</a></td></tr>";
             }
             $query->close();
             ?>
@@ -107,7 +109,7 @@ if (!isset($_SESSION["username"])) {
             <?php
             $query = $conn->query('SELECT * FROM discord WHERE accepted=1');
             while ($record = $query->fetch_row()) {
-                echo "<tr><td>" . $record[0] . "</td>" . "<td>" . $record[1] . "</td>" . "<td>" . $record[2] . "</td>" . "<td>" . $record[4] . "</td><td><a href='actions.php?data=deny&id=" . $record[0] . "'>Remove</a></td></tr>";
+                echo "<tr><td class='" . $record[0] . "'>" . $record[0] . "</td>" . "<td class='" . $record[0] . "'>" . $record[1] . "</td>" . "<td>" . $record[2] . "</td>" . "<td>" . $record[4] . "</td><td id='" . $record[0] . "'><a href='actions.php?data=deny&id=" . $record[0] . "'>Remove</a><a href='#' id='" . $record[0] . "'>Edit</a></td></tr>";
             }
             $query->close();
             ?>
