@@ -15,8 +15,6 @@ class ConnectionHandler
         if ($this->connected) return;
         $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
         $this->connection = $conn;
-        mysqli_set_charset($conn, "utf8");
-
         if ($conn->connect_error) {
             $this->connected = false;
         } else {
@@ -40,7 +38,7 @@ class ConnectionHandler
     }
 
     /**
-     * @return mixed
+     * @return mysqli
      */
     public function getConnection()
     {

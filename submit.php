@@ -1,6 +1,6 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-//header("Content-type: application/json");
+header("Content-type: application/json");
 include "includes/DBController.php";
 
 $DBController = new DBController();

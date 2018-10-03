@@ -76,7 +76,7 @@ class DBController
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getAccepted()
     {
@@ -88,7 +88,7 @@ class DBController
     }
 
     /**
-     * @return mixed
+     * @return integer
      */
     public function getPending()
     {
