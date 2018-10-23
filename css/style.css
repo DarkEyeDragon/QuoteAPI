@@ -12,6 +12,7 @@ body {
 h1 {
     text-align: center;
     font-size: 2em;
+    margin-top: 2%;
 }
 
 h2 {
@@ -30,6 +31,13 @@ h2 {
     margin: 0 auto;
 }
 
+.content > h2 {
+    margin-bottom: 20px;
+}
+
+body:last-child {
+    margin-bottom: 20px;
+}
 .container:first-child {
     margin-top: 2%;
 }
@@ -147,6 +155,41 @@ table th {
     font-size: 3em;
 }
 
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+input[type=submit] {
+    display: block;
+    background-color: #F44236;
+    color: white;
+    padding: 13px 40px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+input[type=submit]:hover {
+    cursor: pointer;
+    background-color: #d13830;
+}
+
+.icon {
+    width: 32px;
+}
+
+.action {
+    text-align: center;
+}
 @media screen and (max-width: 1000px) {
     /*body{
         width: auto;

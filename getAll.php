@@ -3,9 +3,11 @@ header('Access-Control-Allow-Origin: *');
 header("Content-type: application/json");
 include_once "protected/connect.php";
 
-
+//TODO MAKE Object Oriented
 if (isset($_GET["filter"])) {
     if ($_GET["filter"] == "accepted") {
+
+
         $result = $conn->query("SELECT * FROM discord WHERE accepted=1");
     } else if ($_GET["filter"] == "pending") {
         $result = $conn->query("SELECT * FROM discord WHERE accepted=0");

@@ -136,4 +136,23 @@ class DBController
         $this->connectionHandler->close();
         return false;
     }
+
+    public function authenticateHeader($authToken)
+    {
+        $this->connectionHandler->connectToAuthenticator();
+        $conn = $this->connectionHandler->getConnection();
+        if ($stmt = $conn->prepare('SELECT username,password,admin FROM users where username=?')) {
+            $stmt->bind_param("s", $user);
+            $stmt->execute();
+            $stmt->bind_result($username, $password, $admin);
+            $stmt->fetch();
+            if ($admin && password_verify($password, $password)) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    //public function insertAuthUser($)
 }

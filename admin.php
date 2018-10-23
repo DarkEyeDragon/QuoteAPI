@@ -78,7 +78,7 @@ $controller = new DBController();
                         $count++;
                         echo "<td>" . $finalValue . "</td>";
                     }
-                    echo "<td><a href='actions.php?data=accept&id=" . $id . "'>Accept</a> <a href='actions.php?data=deny&id=" . $id . "'>Deny</a></td>";
+                    echo "<td class='action'><a href='actions.php?data=accept&id=" . $id . "'><img class='icon' src='images/icons/check.png'></a> <a href='actions.php?data=deny&id=" . $id . "'><img class='icon' src='images/icons/deny.png'></a></td>";
                     echo "</tr>";
                 }
                 ?>
@@ -104,12 +104,30 @@ $controller = new DBController();
                 foreach ($value as $finalValue) {
                     echo "<td>" . $finalValue . "</td>";
                 }
-                echo "<td><a href='#'>Remove</a></td>";
+                echo "<td class='action'><a href='#'><img class='icon' src='images/icons/delete.png'></a></td>";
                 echo "</tr>";
             }
             ?>
         </table>
     </div>
+</div>
+<div class="container">
+    <div class="content">
+        <h2>Add quote</h2>
+        <form method="get" name="submit" action="submit.php">
+            <fieldset>
+                <label>Quote</label>
+                <input required type="text" placeholder="Quote" name="quote">
+            </fieldset>
+            <fieldset>
+                <label>Author</label>
+                <input required type="text" placeholder="Author" name="user_id">
+            </fieldset>
+            <p>Note: will instantly be added to accepted.</p>
+            <input type="submit">
+        </form>
+    </div>
+
 </div>
 <p><a href="logout.php">Logout</a></p>
 <script>

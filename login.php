@@ -20,6 +20,7 @@ if (!isset($_SESSION["username"])) {
         <meta name="author" content="DarkEyeDragon">
         <link rel="stylesheet" href="css/reset.css">
         <link rel="stylesheet" href="css/login.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css?family=Lato:900" rel="stylesheet">
 
     </head>
@@ -27,12 +28,10 @@ if (!isset($_SESSION["username"])) {
         <h3>Login</h3>
         <form action="login.php" method="post">
             <fieldset>
-                <p>Username</p>
-                <input type="text" required placeholder="Type your username" name="username">
+                <input type="text" required placeholder="Username" name="username">
             </fieldset>
             <fieldset>
-                <p>Password</p>
-                <input type="password" required placeholder="Type your password" name="password">
+                <input type="password" required placeholder="Password" name="password">
             </fieldset>
             <input type="submit">
         </form>

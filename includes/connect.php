@@ -37,6 +37,18 @@ class ConnectionHandler
         }
     }
 
+    public function connectToAuthenticator()
+    {
+        if ($this->connected) return;
+        $conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        $this->connection = $conn;
+
+        if ($conn->connect_error) {
+            $this->connected = false;
+        } else {
+            $this->connected = true;
+        }
+    }
     /**
      * @return mysqli
      */

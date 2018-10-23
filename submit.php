@@ -7,7 +7,6 @@ $DBController = new DBController();
 
 
 if (isset($_GET["quote"], $_GET["user_id"])) {
-    var_dump($DBController);
     $DBController->insertQuote($_GET["quote"], $_GET["user_id"]);
 } else {
     constructResponse(false);
@@ -21,16 +20,18 @@ function constructResponse($success)
             else
                 echo '{"response": "400"}';
         } else {
-            if ($success)
+            if ($success) {
                 http_response_code(200);
-            else
+            } else {
                 http_response_code(400);
+            }
         }
 
     } else {
-        if ($success)
+        if ($success) {
             http_response_code(200);
-        else
+        } else {
             http_response_code(400);
+        }
     }
 }
