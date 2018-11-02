@@ -95,8 +95,12 @@ class DBController
         $this->connectionHandler->connectToQuotes();
         $conn = $this->connectionHandler->getConnection();
         $resultQuery = $conn->query("SELECT id FROM discord WHERE accepted=0");
-        $result = $resultQuery->num_rows;
-        $this->connectionHandler->close();
+        if ($resultQuery->num_rows > 0) {
+            $result = $resultQuery->num_rows;
+            $this->connectionHandler->close();
+        } else {
+            $result = 0;
+        }
 
         return $result;
     }

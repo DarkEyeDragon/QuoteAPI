@@ -190,6 +190,33 @@ input[type=submit]:hover {
 .action {
     text-align: center;
 }
+
+#infoSection {
+    min-height: 50px;
+    display: none;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: lightcoral;
+    text-align: center;
+}
+
+.success {
+    background-color: #2DCC70;
+}
+
+.error {
+    background-color: #F45750;
+}
+
+.table_date {
+    min-width: 150px;
+}
+
+.table_action {
+    min-width: 70px;
+}
 @media screen and (max-width: 1000px) {
     /*body{
         width: auto;

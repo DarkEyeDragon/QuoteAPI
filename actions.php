@@ -31,5 +31,5 @@ if (isset($_GET["data"], $_GET["id"]) && isset($_SESSION["username"])) {
         }
     }
 } else {
-    echo "Unauthorised Access";
+    http_response_code(401);
 }

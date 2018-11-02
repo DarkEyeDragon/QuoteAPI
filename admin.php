@@ -20,9 +20,12 @@ $controller = new DBController();
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="js/editor.js"></script>
+    <!--<script src="js/editor.js"></script>-->
 </head>
 <body>
+<div id="infoSection">
+    <p id="infoText"></p>
+</div>
 <div id="mySidenav" class="sidenav">
     <h3>Quote API</h3>
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -34,14 +37,14 @@ $controller = new DBController();
 <p style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</p>
 <div class="stats">
     <div class="stats-panel">
-        <h2>Accepted</h2>
+        <h2>Pending</h2>
         <?php
         echo "<p>" . $controller->getPending() . "</p>";
         ?>
     </div>
 
     <div class="stats-panel">
-        <h2>Pending</h2>
+        <h2>Accepted</h2>
         <?php
         echo "<p>" . $controller->getAccepted() . "</p>";
         ?>
@@ -61,8 +64,8 @@ $controller = new DBController();
                 <th>ID</th>
                 <th>Quote</th>
                 <th>User</th>
-                <th>Date</th>
-                <th>Action</th>
+                <th class="table_date">Date</th>
+                <th class="table_action">Action</th>
             </tr>
             <tr>
                 <?php
@@ -114,16 +117,15 @@ $controller = new DBController();
 <div class="container">
     <div class="content">
         <h2>Add quote</h2>
-        <form method="get" name="submit" action="submit.php">
+        <form id="form" method="get" action="submit.php">
             <fieldset>
                 <label>Quote</label>
-                <input required type="text" placeholder="Quote" name="quote">
+                <input id="quote_input" required type="text" placeholder="Quote" name="quote">
             </fieldset>
             <fieldset>
                 <label>Author</label>
-                <input required type="text" placeholder="Author" name="user_id">
+                <input id="user_id_input" required type="text" placeholder="Author" name="user_id">
             </fieldset>
-            <p>Note: will instantly be added to accepted.</p>
             <input type="submit">
         </form>
     </div>
@@ -139,5 +141,6 @@ $controller = new DBController();
         document.getElementById("mySidenav").style.width = "0";
     }
 </script>
+<script src="js/ajax.js"></script>
 </body>
 </html>
